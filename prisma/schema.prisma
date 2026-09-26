@@ -64,6 +64,7 @@ model User {
   id       String     @id @default(cuid())
   name     String
   email    String     @unique
+  googleId String?    @unique
   password String
   phone    String?
   role     UserRole   @default(CUSTOMER)
@@ -74,6 +75,8 @@ model User {
   wishlist  Wishlist?
   orders    Order[]
   reviews   Review[]
+
+   passwordResetTokens PasswordResetToken[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -393,4 +396,17 @@ model Coupon {
 
   @@index([code])
   @@index([isActive])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
 }
