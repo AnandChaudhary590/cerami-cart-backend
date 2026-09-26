@@ -11,6 +11,7 @@ import prisma from "./config/prisma";
 import productRoutes from "./routes/productRoutes";
 import cartRoutes from "./routes/cartRoutes";
 import wishlistRoutes from "./routes/wishlistRoutes";
+import addressRoutes from "./routes/addressRoutes";
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/wishlist", wishlistRoutes);
+app.use("/api/addresses", addressRoutes);
 // ==========================================
 // HEALTH CHECK
 // ==========================================
